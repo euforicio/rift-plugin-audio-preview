@@ -1,0 +1,64 @@
+{
+  "name": "bb-plugin-audio-preview",
+  "version": "0.1.0",
+  "description": "Plays audio files in BB's file panel, including .m4a (audio/mp4) that the built-in preview refuses.",
+  "license": "MIT",
+  "author": "Braedon Saunders",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/braedonsaunders/bb-plugin-audio-preview.git"
+  },
+  "bugs": {
+    "url": "https://github.com/braedonsaunders/bb-plugin-audio-preview/issues"
+  },
+  "homepage": "https://github.com/braedonsaunders/bb-plugin-audio-preview#readme",
+  "keywords": [
+    "bb",
+    "bb-plugin",
+    "audio",
+    "preview",
+    "m4a"
+  ],
+  "files": [
+    "app.tsx",
+    "server.ts",
+    "lib",
+    "components",
+    "assets",
+    "components.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --experimental-strip-types --test test/*.test.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "bb": ">=0.39",
+    "bbPluginSdk": ">=0.4.8"
+  },
+  "bb": {
+    "name": "Audio Preview",
+    "description": "Play .m4a, .mp3, .wav, and other audio files in the file panel.",
+    "branding": {
+      "icon": "./assets/icon.svg"
+    },
+    "server": "./server.ts",
+    "app": "./app.tsx",
+    "skills": []
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@get-bb/plugin-sdk": "0.4.8",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}
