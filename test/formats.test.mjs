@@ -14,6 +14,7 @@ import {
   splitAbsoluteFile,
   splitRelativeSegments,
 } from "../lib/formats.ts";
+import { clampSeekTime } from "../lib/playback.ts";
 
 test("m4a is audio/mp4 — the MIME BB's built-in preview refuses", () => {
   assert.equal(mimeForPath("music-tense-clockwork-combo.m4a"), "audio/mp4");
@@ -51,4 +52,11 @@ test("splits host files and formats clocks", () => {
   assert.equal(formatClock(3661), "1:01:01");
   assert.equal(formatBytes(1500), "1.5 KB");
   assert.ok(PREVIEW_TTL_MS <= 3_600_000);
+});
+
+test("seek times stay finite and inside the track", () => {
+  assert.equal(clampSeekTime(42.5, 90), 42.5);
+  assert.equal(clampSeekTime(120, 90), 90);
+  assert.equal(clampSeekTime(-5, 90), 0);
+  assert.equal(clampSeekTime(Number.NaN, 90), 0);
 });

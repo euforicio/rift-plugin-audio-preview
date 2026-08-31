@@ -10,8 +10,10 @@ opener for common audio extensions and renders an HTML5 player instead.
 
 - Opens `.m4a`, `.mp3`, `.wav`, `.ogg`, `.flac`, `.aac`, and other common
   audio files in a playable preview tab.
-- Serves the file through BB's host preview URL, then falls back to a
-  correctly-typed blob if the browser cannot decode the stream.
+- Loads a correctly-typed, seekable blob when the file fits BB's read limit,
+  then falls back to BB's host preview URL for larger files.
+- Keeps one playback session alive while you move between threads and file
+  tabs in the same BB window.
 - Works for workspace files, absolute host paths, and thread-storage files.
 - Nothing else. No settings, no sidebar, no background work.
 
@@ -44,10 +46,14 @@ host's "Preview not available" page.
 
 Two transports:
 
-1. `bb.sdk.files.createPreview` — a temporary same-origin URL confined to
-   the file's host root. BB caps `ttlMs` at one hour.
-2. If that URL fails to decode, `files.read` returns the bytes and the
-   frontend plays a blob with the right MIME (`audio/mp4` for `.m4a`).
+1. `files.read` returns the bytes and the frontend plays a seekable blob with
+   the right MIME (`audio/mp4` for `.m4a`).
+2. `bb.sdk.files.createPreview` is the fallback for files above BB's read
+   limit. It produces a temporary same-origin URL confined to the host root.
+
+The audio element belongs to the plugin window rather than an individual file
+tab, so navigating to another thread does not destroy the current playback
+position.
 
 `.mp4` and `.webm` are left to BB — those containers are often video.
 

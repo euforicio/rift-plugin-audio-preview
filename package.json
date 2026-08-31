@@ -1,6 +1,6 @@
 {
   "name": "bb-plugin-audio-preview",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plays audio files in BB's file panel, including .m4a (audio/mp4) that the built-in preview refuses.",
   "license": "MIT",
   "author": "Braedon Saunders",
