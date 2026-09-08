@@ -76,3 +76,8 @@ bb plugin dev
 ## Licence
 
 MIT © Braedon Saunders
+
+## Fork provenance
+
+Rift Labs fork: https://github.com/euforicio/rift-plugin-audio-preview
+Upstream: https://github.com/braedonsaunders/bb-plugin-audio-preview

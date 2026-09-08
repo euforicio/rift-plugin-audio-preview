@@ -1,4 +1,4 @@
-import type { BbPluginApi } from "@get-bb/plugin-sdk";
+import type { RiftPluginApi } from "@riftlabs/plugin-sdk";
 import {
   fileNameOf,
   joinHostPath,
@@ -27,7 +27,7 @@ export type ResolvedAudio = {
 };
 
 export async function resolveAudioLocation(
-  bb: BbPluginApi,
+  bb: RiftPluginApi,
   path: string,
   source: AudioSource,
 ): Promise<ResolvedAudio> {
@@ -75,7 +75,7 @@ export async function resolveAudioLocation(
 }
 
 export async function createAudioPreviewUrl(
-  bb: BbPluginApi,
+  bb: RiftPluginApi,
   resolved: ResolvedAudio,
 ): Promise<{ url: string; expiresAtMs: number }> {
   const preview = await bb.sdk.files.createPreview({
@@ -90,7 +90,7 @@ export async function createAudioPreviewUrl(
 }
 
 export async function readAudioBytes(
-  bb: BbPluginApi,
+  bb: RiftPluginApi,
   resolved: ResolvedAudio,
 ): Promise<{ contentBase64: string; sizeBytes: number }> {
   const file = await bb.sdk.files.read({
@@ -107,7 +107,7 @@ export async function readAudioBytes(
 }
 
 async function resolveWorkspaceRoot(
-  bb: BbPluginApi,
+  bb: RiftPluginApi,
   source: AudioSource,
 ): Promise<{ hostId?: string; rootPath: string }> {
   if (source.environmentId) {
@@ -141,7 +141,7 @@ async function resolveWorkspaceRoot(
 }
 
 async function resolveProjectRoot(
-  bb: BbPluginApi,
+  bb: RiftPluginApi,
   projectId: string,
 ): Promise<{ hostId: string; rootPath: string }> {
   const project = await bb.sdk.projects.get({ projectId });
@@ -153,7 +153,7 @@ async function resolveProjectRoot(
 }
 
 async function resolveHostId(
-  bb: BbPluginApi,
+  bb: RiftPluginApi,
   source: AudioSource,
 ): Promise<string | undefined> {
   if (source.environmentId) {

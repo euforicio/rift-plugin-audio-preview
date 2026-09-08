@@ -1,4 +1,4 @@
-import { defineRpcContract, type BbPluginApi } from "@get-bb/plugin-sdk";
+import { defineRpcContract, type RiftPluginApi } from "@riftlabs/plugin-sdk";
 import { z } from "zod";
 import { extensionOf, formatLabel } from "./lib/formats";
 import {
@@ -47,7 +47,7 @@ export const rpcContract = defineRpcContract({
   },
 });
 
-export default async function plugin(bb: BbPluginApi) {
+export default async function plugin(bb: RiftPluginApi) {
   bb.log.info("loaded — audio file opener is registered by the app bundle");
 
   bb.rpc.register(rpcContract, {

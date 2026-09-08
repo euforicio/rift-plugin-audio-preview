@@ -3,7 +3,7 @@ import {
   definePluginApp,
   useRpc,
   type PluginFileOpenerProps,
-} from "@get-bb/plugin-sdk/app";
+} from "@riftlabs/plugin-sdk/app";
 import type { rpcContract } from "./server";
 import { AUDIO_EXTENSIONS, formatBytes, formatClock } from "./lib/formats";
 import { playback, type PlaybackTrack } from "./lib/playback";
